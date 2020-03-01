@@ -3,7 +3,7 @@ const teacher: {
   name: string;
   age: number;
 } = {
-  name: "Jiawei Wang",
+  name: "Jiawei Wang 12",
   age: 23
 };
 const numbers: number[] = [1, 3, 5];

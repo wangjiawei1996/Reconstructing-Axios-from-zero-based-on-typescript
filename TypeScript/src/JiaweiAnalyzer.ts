@@ -13,6 +13,13 @@ interface Content {
   [propName: number]: Course[];
 }
 export default class JiaweiAnalyzer implements Analyzer {
+  private static instance: JiaweiAnalyzer;
+  static getInstance() {
+    if (!JiaweiAnalyzer.instance) {
+      JiaweiAnalyzer.instance = new JiaweiAnalyzer();
+    }
+    return JiaweiAnalyzer.instance;
+  }
   private getCourseInfo(html: string) {
     const $ = cheerio.load(html);
     const courseItems = $(".course-item");
@@ -34,7 +41,7 @@ export default class JiaweiAnalyzer implements Analyzer {
       data: courseInfos
     };
   }
-  generateJsonContent(courseInfo: CourseResult, filePath: string) {
+  private generateJsonContent(courseInfo: CourseResult, filePath: string) {
     let fileContent: Content = {};
     if (fs.existsSync(filePath)) {
       fileContent = JSON.parse(fs.readFileSync(filePath, "utf-8"));
@@ -47,4 +54,5 @@ export default class JiaweiAnalyzer implements Analyzer {
     const fileContent = this.generateJsonContent(courseInfo, filePath);
     return JSON.stringify(fileContent);
   }
+  private constructor() {}
 }

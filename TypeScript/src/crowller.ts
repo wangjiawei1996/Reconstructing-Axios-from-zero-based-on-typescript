@@ -29,3 +29,4 @@ const secret = "secretKey";
 const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`;
 const analyzer = JiaweiAnalyzer.getInstance();
 new Crowller(url, analyzer);
+console.log("dell in a teacher");

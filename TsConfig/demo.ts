@@ -1,15 +1,8 @@
-enum Status {
-  OFFLINE,
-  ONLINE,
-  DELETED
+function join<T, P>(first: T, second: P) {
+  return `${first}${second}`;
 }
-function getResult(status: number) {
-  if (status === Status.OFFLINE) {
-    return "offline";
-  } else if (status === Status.ONLINE) {
-    return "online";
-  } else if (status === Status.DELETED) {
-    return "deleted";
-  }
-  return "error";
+function map<ABC>(params: ABC) {
+  return params;
 }
+join<string, number>("1 ", 1);
+map<number>(1);

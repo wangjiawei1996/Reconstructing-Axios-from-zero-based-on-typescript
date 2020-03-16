@@ -1,8 +1,22 @@
-function join<T, P>(first: T, second: P) {
-  return `${first}${second}`;
+// interface Item {
+//   name: string;
+// }
+class DataManager<T extends string | number> {
+  constructor(private data: T[]) {}
+  getItem(index: number): T {
+    return this.data[index];
+  }
 }
-function map<ABC>(params: ABC) {
-  return params;
+// const data = new DataManager([
+//   {
+//     name: "Jiawei"
+//   }
+// ]);
+// data.getItem(0);
+// interface Test {
+//   name: string
+// }
+function hello<T>(param: T) {
+  return param;
 }
-join<string, number>("1 ", 1);
-map<number>(1);
+const func: <T>(param: T) => T = hello;

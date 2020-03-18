@@ -4,13 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
 </head>
 
 <body>
   <script src="./dist/page.js"></script>
 </body>
 <script>
-  new Home.Page()
+  require(['page'], function (page) {
+    new page.default()
+  })
 </script>
 
 </html>

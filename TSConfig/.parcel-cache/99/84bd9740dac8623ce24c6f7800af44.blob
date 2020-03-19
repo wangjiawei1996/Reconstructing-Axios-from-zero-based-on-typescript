@@ -4,13 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Document</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.js"></script>
+  <script src="2588473c560c27d9cbae48e0dd5742f3"></script>
 </head>
 
 <body>
-  <script src="./dist/page.js"></script>
+  <script src="76a1f2d3141414a0da161060690f01c0"></script>
 </body>
-<script>
+<script data-parcel-key="2a60930132b23e17b4fa8cdcc0f8adc4">
   require(['page'], function (page) {
     new page.default()
   })

@@ -15,3 +15,26 @@
 
 // const test = new Test();
 // (test as any).getName();
+
+function getNameDecorator(
+  target: any,
+  key: string,
+  descriptor: PropertyDescriptor
+) {
+  descriptor.value = () => {
+    return "decorate";
+  };
+}
+class Test {
+  name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+  @getNameDecorator
+  getName() {
+    return this.name;
+  }
+}
+
+const test = new Test("Jiawei");
+console.log(test.getName());

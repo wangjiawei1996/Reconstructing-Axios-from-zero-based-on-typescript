@@ -16,25 +16,24 @@
 // const test = new Test();
 // (test as any).getName();
 
-function getNameDecorator(
+function visitDecorator(
   target: any,
   key: string,
   descriptor: PropertyDescriptor
-) {
-  descriptor.value = () => {
-    return "decorate";
-  };
-}
+) {}
 class Test {
-  name: string;
+  private _name: string;
   constructor(name: string) {
-    this.name = name;
+    this._name = name;
   }
-  @getNameDecorator
-  getName() {
-    return this.name;
+  get name() {
+    return this._name;
+  }
+  @visitDecorator
+  set name(name: string) {
+    this._name = name;
   }
 }
 
-const test = new Test("Jiawei");
-console.log(test.getName());
+// const test = new Test("Jiawei");
+// console.log(test.getName());

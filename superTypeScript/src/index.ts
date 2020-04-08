@@ -16,24 +16,16 @@
 // const test = new Test();
 // (test as any).getName();
 
-function visitDecorator(
-  target: any,
-  key: string,
-  descriptor: PropertyDescriptor
-) {}
-class Test {
-  private _name: string;
-  constructor(name: string) {
-    this._name = name;
-  }
-  get name() {
-    return this._name;
-  }
-  @visitDecorator
-  set name(name: string) {
-    this._name = name;
-  }
+//修改的并不是实例上的name,而是原型上的name
+function nameDecorator(target: any, key: string): any {
+  target[key] = "wang";
 }
 
-// const test = new Test("Jiawei");
-// console.log(test.getName());
+//name放在实例上
+class Test {
+  @nameDecorator
+  name = "Jiawei";
+}
+
+const test = new Test();
+console.log((test as any).__proto__.name);

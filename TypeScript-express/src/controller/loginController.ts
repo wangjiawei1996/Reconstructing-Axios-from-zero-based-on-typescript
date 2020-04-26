@@ -22,7 +22,7 @@ class LoginController {
       res.send(`
       <html>
         <body>
-          <a href='/logout'>退出</a>
+          <a href='/logout'>退出登录</a>
           <a href='/getData'>爬取内容</a>
           <a href='/showData'>展示内容</a>
         </body>

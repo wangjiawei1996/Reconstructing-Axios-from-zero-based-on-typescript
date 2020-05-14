@@ -36,11 +36,7 @@
 //   }
 // });
 // router.get("/getData", checkLogin, (req: BodyRequest, res: Response) => {
-//   const secret = "secretKey";
-//   const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`;
-//   const analyzer = Analyzer.getInstance();
-//   new Crowller(url, analyzer);
-//   res.json(getResponseData(true));
+
 // });
 // router.get("/showData", checkLogin, (req: BodyRequest, res: Response) => {
 //   try {

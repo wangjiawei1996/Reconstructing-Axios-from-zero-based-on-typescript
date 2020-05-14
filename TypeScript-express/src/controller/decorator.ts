@@ -25,3 +25,5 @@ function getRequestDecorator(type: string) {
 }
 export const get = getRequestDecorator("get");
 export const post = getRequestDecorator("post");
+export const put = getRequestDecorator("put");
+export const del = getRequestDecorator("delete");

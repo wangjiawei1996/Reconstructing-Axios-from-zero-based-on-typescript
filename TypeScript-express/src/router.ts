@@ -9,15 +9,6 @@
 //   body: { [key: string]: string | undefined };
 // }
 
-// const checkLogin = (req: Request, res: Response, next: NextFunction) => {
-//   const isLogin = req.session ? req.session.login : false;
-//   if (isLogin) {
-//     next();
-//   } else {
-//     res.json(getResponseData(null, "请先登录"));
-//   }
-// };
-
 // const router = Router();
 
 // router.post("/login", (req: BodyRequest, res: Response) => {

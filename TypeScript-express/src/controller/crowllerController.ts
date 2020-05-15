@@ -2,26 +2,26 @@ import fs from "fs";
 import path from "path";
 import { Request, Response, NextFunction } from "express";
 import "reflect-metadata";
-import { controller, get, use } from "./decorator";
+import { controller, use, get } from "../decorator";
 import { getResponseData } from "../utils/util";
 import Crowller from "../utils/crowller";
 import Analyzer from "../utils/analyzer";
 interface BodyRequest extends Request {
   body: { [key: string]: string | undefined };
 }
-const checkLogin = (req: Request, res: Response, next: NextFunction) => {
-  const isLogin = req.session ? req.session.login : false;
+const checkLogin = (req: Request, res: Response, next: NextFunction): void => {
+  const isLogin = !!(req.session ? req.session.login : false);
   if (isLogin) {
     next();
   } else {
     res.json(getResponseData(null, "请先登录"));
   }
 };
-@controller
-class CrowllerController {
+@controller("/")
+export class CrowllerController {
   @get("/getData")
   @use(checkLogin)
-  getData(req: BodyRequest, res: Response) {
+  getData(req: BodyRequest, res: Response): void {
     const secret = "secretKey";
     const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`;
     const analyzer = Analyzer.getInstance();
@@ -31,7 +31,7 @@ class CrowllerController {
 
   @get("/showData")
   @use(checkLogin)
-  showData(req: BodyRequest, res: Response) {
+  showData(req: BodyRequest, res: Response): void {
     try {
       const position = path.resolve(__dirname, "../data/course.json");
       const result = fs.readFileSync(position, "utf 8");

@@ -17,10 +17,19 @@ const checkLogin = (req: Request, res: Response, next: NextFunction): void => {
     res.json(getResponseData(null, "请先登录"));
   }
 };
+const test = (req: Request, res: Response, next: NextFunction): void => {
+  const isLogin = !!(req.session ? req.session.login : false);
+  if (isLogin) {
+    next();
+  } else {
+    res.json(getResponseData(null, "请先登录"));
+  }
+};
 @controller("/")
 export class CrowllerController {
   @get("/getData")
   @use(checkLogin)
+  @use(test)
   getData(req: BodyRequest, res: Response): void {
     const secret = "secretKey";
     const url = `http://www.dell-lee.com/typescript/demo.html?secret=${secret}`;

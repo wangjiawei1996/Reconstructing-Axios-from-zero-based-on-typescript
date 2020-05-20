@@ -1,46 +1,14 @@
 import React from "react";
-import { Form, Input, Button, Checkbox } from "antd";
-import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import "./login.css";
-
-const NormalLoginForm = () => {
-  const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
-  };
-
+import { HashRouter, Switch, Route } from "react-router-dom";
+import LoginPage from "./Pages/Login";
+export default () => {
   return (
-    <div className="login-page">
-      <Form
-        name="normal_login"
-        className="login-form"
-        initialValues={{
-          remember: true
-        }}
-        onFinish={onFinish}
-      >
-        <Form.Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              message: "请输入登录密码"
-            }
-          ]}
-        >
-          <Input
-            prefix={<LockOutlined className="site-form-item-icon" />}
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit">
-            登录
-          </Button>
-        </Form.Item>
-      </Form>
+    <div>
+      <HashRouter>
+        <Switch>
+          <Route path="/login" exact component={LoginPage}></Route>
+        </Switch>
+      </HashRouter>
     </div>
   );
 };
-
-export default NormalLoginForm;

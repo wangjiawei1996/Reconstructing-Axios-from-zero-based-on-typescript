@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import "./login.css";
+import "./style.css";
 
 const NormalLoginForm = () => {
   const onFinish = (values: any) => {

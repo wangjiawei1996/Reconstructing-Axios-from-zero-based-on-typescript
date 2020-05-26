@@ -1,19 +1,22 @@
-import express, { Request, Response, NextFunction } from "express";
-import cookieSession from "cookie-session";
+import express from "express";
 import bodyParser from "body-parser";
-import "./controller/loginController";
-import "./controller/crowllerController";
+import cookieSession from "cookie-session";
+import "./controller/LoginController";
+import "./controller/CrowllerController";
 import router from "./router";
+
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   cookieSession({
     name: "session",
-    keys: ["teacher Jiawei"],
+    keys: ["teacher dell"],
     maxAge: 24 * 60 * 60 * 1000
   })
 );
+
 app.use(router);
+
 app.listen(7002, () => {
   console.log("server is running");
 });

@@ -1,27 +1,42 @@
-import React from "react";
+import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import axios from "axios";
 import "./style.css";
-import { is } from "@babel/types";
 
-interface State {
-  isLogin: boolean;
-}
-class Home extends React.Component<{}, State> {
+class Home extends Component {
   state = {
     loaded: false,
     isLogin: true
   };
+
   componentDidMount() {
     axios.get("/api/isLogin").then(res => {
-      if (!res.data.data) {
+      if (!res.data) {
         this.setState({
-          isLogin: false
+          isLogin: false,
+          loaded: true
+        });
+      } else {
+        this.setState({
+          loaded: true
         });
       }
     });
   }
+
+  handleLogoutClick = () => {
+    axios.get("/api/logout").then(res => {
+      if (res.data) {
+        this.setState({
+          isLogin: false
+        });
+      } else {
+        message.error("退出失败");
+      }
+    });
+  };
+
   render() {
     const { isLogin, loaded } = this.state;
     if (isLogin) {
@@ -32,14 +47,16 @@ class Home extends React.Component<{}, State> {
               爬取
             </Button>
             <Button type="primary">展示</Button>
-            <Button type="primary">退出</Button>
+            <Button type="primary" onClick={this.handleLogoutClick}>
+              退出
+            </Button>
           </div>
         );
       }
       return null;
-    } else {
-      return <Redirect to="/login" />;
     }
+    return <Redirect to="/login" />;
   }
 }
+
 export default Home;

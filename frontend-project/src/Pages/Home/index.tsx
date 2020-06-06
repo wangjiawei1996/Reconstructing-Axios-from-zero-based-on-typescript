@@ -6,17 +6,10 @@ import request from "../../request";
 import moment from "moment";
 import "./style.css";
 
-interface CourseItem {
-  title: string;
-  count: number;
-}
-interface DataStructure {
-  [key: string]: CourseItem[];
-}
 interface State {
   loaded: boolean;
   isLogin: boolean;
-  data: DataStructure;
+  data: responseResult.DataStructure;
 }
 class Home extends Component {
   state: State = {
@@ -27,7 +20,7 @@ class Home extends Component {
 
   componentDidMount() {
     request.get("/api/isLogin").then((res) => {
-      const data: boolean = res.data;
+      const data: responseResult.isLogin = res.data;
       if (!data) {
         this.setState({
           isLogin: false,
@@ -40,7 +33,7 @@ class Home extends Component {
       }
     });
     request.get("/api/showData").then((res) => {
-      const data = res.data;
+      const data: responseResult.DataStructure = res.data;
       if (data) {
         this.setState({
           data,
@@ -51,7 +44,7 @@ class Home extends Component {
 
   handleLogoutClick = () => {
     request.get("/api/logout").then((res) => {
-      const data: DataStructure = res.data;
+      const data: responseResult.logout = res.data;
       if (data) {
         this.setState({
           isLogin: false,
@@ -63,7 +56,7 @@ class Home extends Component {
   };
   handleCrowllerClick = () => {
     request.get("/api/getData").then((res) => {
-      const data: boolean = res.data;
+      const data: responseResult.getData = res.data;
       if (data) {
         message.success("爬取成功");
       } else {
